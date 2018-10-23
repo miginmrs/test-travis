@@ -5,11 +5,17 @@ node_js:
 
 sudo: true
 addons:
-  firefox: stable
+  chrome: stable
 
 install:
   - npm install
   - npm i -g @angular/cli
+
+notifications:
+  irc:
+    template:
+      - "%{repository_slug} (%{commit}) : %{message} %{foo} "
+      - "Build details: %{build_url}"
 
 before_script:
   - export DISPLAY=:99.0
