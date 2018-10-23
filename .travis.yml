@@ -9,7 +9,6 @@ addons:
 
 install:
   - npm install
-  - apt install openssl
   - npm i -g @angular/cli
 
 before_script:
