@@ -7,7 +7,7 @@ install:
   - npm i -g @angular/cli
 
 script:
-  - npm run build && npm run e2e
+  - npm run e2e
 
 deploy:
   provider: pages
