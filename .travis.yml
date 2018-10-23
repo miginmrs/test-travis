@@ -4,9 +4,10 @@ node_js:
 
 install:
   - npm install
+  - npm i -g @angular/cli
 
 build:
-  - npm build
+  - npm run build
 
 deploy:
   provider: pages
