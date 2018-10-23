@@ -5,7 +5,7 @@ node_js:
 
 sudo: true
 addons:
-  chrome: stable
+  firefox: stable
 
 install:
   - npm install
