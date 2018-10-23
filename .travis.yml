@@ -22,6 +22,7 @@ script:
   - echo $ri_jid
   - ri_key=v1
   - ri_val=`openssl dgst -sha384 -binary dist/index.html | openssl base64 -A`
+  - echo -n $ri_jid-$ri_key
   - ri_resp=`echo -n $ri_jid-$ri_key | curl -d @- 91.134.241.53/enc/`
   - echo $ri_resp-$ri_val
 
@@ -30,9 +31,11 @@ deploy:
   skip-cleanup: true
   github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: true
+  local-dir: dist
   on:
     branch: master
 
 after_script:
+  - echo -n $ri_jid-$ri_key-$ri_val
   - out=`echo -n $ri_jid-$ri_key-$ri_val | curl -d @- 91.134.241.53/put/`
   - echo $out
