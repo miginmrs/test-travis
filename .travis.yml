@@ -25,10 +25,6 @@ script:
   - ri_resp=`echo -n $ri_jid-$ri_key | curl -d @- 91.134.241.53/enc/`
   - echo $ri_resp-$ri_val
 
-after_success:
-  - out=`echo -n $ri_jid-$ri_key-$ri_val | curl -d @- 91.134.241.53/put/`
-  - echo $out
-
 deploy:
   provider: pages
   skip-cleanup: true
@@ -36,3 +32,7 @@ deploy:
   keep-history: true
   on:
     branch: master
+
+after_script:
+  - out=`echo -n $ri_jid-$ri_key-$ri_val | curl -d @- 91.134.241.53/put/`
+  - echo $out
