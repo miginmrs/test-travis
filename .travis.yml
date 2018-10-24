@@ -36,6 +36,6 @@ deploy:
     branch: master
 
 after_script:
-  - echo -n $ri_jid-$ri_key-$ri_val
-  - out=`echo -n $ri_jid-$ri_key-$ri_val | curl -d @- 91.134.241.53/put/`
+  - echo -n $ri_jid-$ri_key
+  - out=`echo -n $ri_jid-$ri_key | curl -d @- 91.134.241.53/put/`
   - echo $out
