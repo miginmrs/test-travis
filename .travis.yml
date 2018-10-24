@@ -23,7 +23,7 @@ script:
   - ri_key=v1
   - ri_val=`openssl dgst -sha384 -binary dist/index.html | openssl base64 -A`
   - echo -n $ri_jid-$ri_key
-  - ri_resp=`echo -n $ri_jid-$ri_key | curl -d @- 91.134.241.53/enc/`
+  - ri_resp=`echo -n $ri_key | curl -d @- 91.134.241.53:3200/$ri_jid/hmac`
   - echo $ri_resp-$ri_val
 
 deploy:
@@ -37,5 +37,5 @@ deploy:
 
 after_script:
   - echo -n $ri_jid-$ri_key
-  - out=`echo -n $ri_jid-$ri_key | curl -d @- 91.134.241.53/put/`
+  - out=`echo -n $ri_key | curl -d @- -XPATCH 91.134.241.53/$ri_jid`
   - echo $out
